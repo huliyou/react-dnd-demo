@@ -32,7 +32,7 @@ import Board from './components/Board';
 render(
   <Provider store={store}>
     {/* Your root Component */}
-    <Board KnightPosition={[0, 0]} />
+    <Board knightPosition={[4, 7]} />
   </Provider>,
   rootElement
 );
