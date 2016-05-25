@@ -27,12 +27,12 @@ reduxRouterMiddleware.listenForReplays(store);
 
 console.log('store', store.getState());
 
-import Component from './components';
+import Knight from './components/Knight';
 
 render(
   <Provider store={store}>
     {/* Your root Component */}
-    <Component />
+    <Knight />
   </Provider>,
   rootElement
 );
