@@ -19,6 +19,7 @@ export default class Square extends Component {
         color: stroke,
         width: '100%',
         height: '100%',
+        fontSize: '5em',
       }}
       >
         {this.props.children}

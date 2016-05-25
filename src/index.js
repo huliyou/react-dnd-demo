@@ -25,14 +25,19 @@ const store = createStoreWithMiddleware(
 
 reduxRouterMiddleware.listenForReplays(store);
 
-console.log('store', store.getState());
-
 import Board from './components/Board';
+import { observe } from './state/Game';
 
-render(
-  <Provider store={store}>
-    {/* Your root Component */}
-    <Board knightPosition={[4, 7]} />
-  </Provider>,
-  rootElement
+// observe(KnightPosition => {
+//   render(
+//     <Board KnightPosition={KnightPosition} />,
+//     rootElement
+//   );
+// });
+
+observe(knightPosition =>
+  render(
+    <Board knightPosition={knightPosition} />,
+    rootElement
+  )
 );
