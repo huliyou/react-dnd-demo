@@ -3,7 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import Square from './Square';
+import BoardSquare from './BoardSquare';
 import Knight from './Knight';
 import { moveKnight, canMoveKnight } from '../state/Game';
 import { DragDropContext } from 'react-dnd';
@@ -21,24 +21,29 @@ export default class Board extends Component {
       moveKnight(toX, toY);
     }
   }
+  renderPiece(x, y) {
+    const [knightX, knightY ] = this.props.knightPosition;
+    if (x === knightX && y === knightY) {
+      return <Knight />;
+    }
+  }
   renderSquare(i) {
     const x = i % 8;
     const y = Math.floor(i / 8);
-    const black: boolean = (x + y) % 2 === 1;
-    const [KnightX, KnightY] : [number, number] = this.props.knightPosition;
-    const piece = (x === KnightX && y === KnightY) ? <Knight /> : null;
     return (
       <div
-        onClick={() => this.handleSquareClick(x, y)}
         key={i}
         style={{
           width: '12.5%',
           height: '12.5%',
         }}
       >
-        <Square black={black} >
-          {piece}
-        </Square>
+        <BoardSquare
+          x={x}
+          y={y}
+        >
+          {this.renderPiece(x, y)}
+        </BoardSquare>
       </div>
     );
   }
