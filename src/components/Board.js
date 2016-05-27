@@ -5,6 +5,7 @@
 import React, { Component, PropTypes } from 'react';
 import Square from './Square';
 import Knight from './Knight';
+import { moveKnight } from '../state/Game';
 
 export default class Board extends Component {
   static propTypes = {
@@ -12,6 +13,9 @@ export default class Board extends Component {
       PropTypes.number.isRequired,
     ).isRequired,
   };
+  handleSquareClick(toX, toY) {
+    moveKnight(toX, toY);
+  }
   renderSquare(i) {
     const x = i % 8;
     const y = Math.floor(i / 8);
@@ -20,6 +24,7 @@ export default class Board extends Component {
     const piece = (x === KnightX && y === KnightY) ? <Knight /> : null;
     return (
       <div
+        onClick={() => this.handleSquareClick(x, y)}
         key={i}
         style={{
           width: '12.5%',
@@ -51,3 +56,4 @@ export default class Board extends Component {
     );
   }
 }
+
